@@ -46,12 +46,18 @@ window.onload = function () {
             if (typeof messageJSON.i !== "undefined") {
                 // Обработка ответа от сервера
                 if (messageJSON.i[0] == 0)
+                // сообщение
                     label.innerHTML += '<br />' + 'i: ' + messageJSON.i[1];
-                if (messageJSON.i[0] == 1)
+                if (messageJSON.i[0] == 1) {
+                    // Анимация вращения спинера
+                    var angle = parseFloat($("#spinner").getRotateAngle());
+                    console.log('spinner: angle is ' + angle + '°C');
                     $("#spinner").rotate({
-                        angle: 0,
-                        animateTo: 1080
-                    })
+                        //angle: angle,
+                        animateTo: angle + 360 * 9,
+                        duration: 8000,
+                    });
+                }
             } else {
                 label.innerHTML = 'i: data error!';
                 console.log('error: type of answer is no structured!');
@@ -65,9 +71,6 @@ window.onload = function () {
     // Отправка сообщения в чат
     btnSend.onclick = function () {
         if (socket.readyState === WebSocket.OPEN) {
-            // Отправка строки
-//                    socket.send(message.value);
-//                    console.log('send: ' + message.value);
             // Отпрвка JSON
             var messageJSON = JSON.stringify(
                 {
@@ -85,16 +88,17 @@ window.onload = function () {
             socket.close();
     }
 
-    // Вращение спинера
+    // Отправка вращения спинера
     $("#spinner").click(function () {
+        // Проверка состояния сокета
         if (socket.readyState === WebSocket.OPEN) {
+            // JSON на вращение спинера
             var messageJSON = JSON.stringify(
                 {
-                    i: [1, 1]
+                    i: [1, 'spin']
                 }
             );
             socket.send(messageJSON);
-            console.log('send: ' + messageJSON);
         }
     });
 }
