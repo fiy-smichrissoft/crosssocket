@@ -1,5 +1,6 @@
 $(function () {
 
+    // Блок со спинером
     var spinnerDIV = document.getElementById("spinnerDIV");
 
     // Маркер нажатого состояния на спинере
@@ -68,7 +69,7 @@ $(function () {
         console.log('spinner: spindown is ' + spindown) + ' (touchend)';
     });
 
-    // Вращение спинера по управляемому положению
+    // Поворот спинера по ведению по нему
     // (Desktop)
     $("#spinnerSVG").mousemove(function (event) {
         if (spindown) {

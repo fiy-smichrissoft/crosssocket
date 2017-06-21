@@ -1,14 +1,25 @@
-// JSON:
-// {["тип сообщения", "значение"]}
-// типы сообщений: 1 - текстовое сообщение для чата, 2 - крутить спиннер
+/*
+    JSON:
+        {["тип сообщения", "значение"]}
+    типы сообщений:
+        1 - текстовое сообщение для чата
+        2 - крутить спиннер
+*/
 
 // Загрузка страницы
 window.onload = function () {
+
+    // Отключение скрола
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, true);
+
+    // Получение основных элементов страницы в переменные
     var label = document.getElementById("status");
     var message = document.getElementById("message");
     var btnSend = document.getElementById("send");
     var btnStop = document.getElementById("stop");
-//            var socket = new WebSocket("ws://echo.websocket.org");
+    // var socket = new WebSocket("ws://echo.websocket.org");
     var socket = new WebSocket("ws://138.201.158.208:8888");
     var spinner = document.getElementById("spinner");
 
