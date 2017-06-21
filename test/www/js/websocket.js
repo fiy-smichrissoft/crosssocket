@@ -9,8 +9,8 @@ window.onload = function () {
     var btnSend = document.getElementById("send");
     var btnStop = document.getElementById("stop");
 //            var socket = new WebSocket("ws://echo.websocket.org");
-//            var socket = new WebSocket("ws://127.0.0.1:8080");
     var socket = new WebSocket("ws://138.201.158.208:8888");
+    var spinner = document.getElementById("spinner");
 
     // CONNECTING, OPEN, CLOSING, CLOSE
     // bufferedAmount
@@ -49,14 +49,19 @@ window.onload = function () {
                 // сообщение
                     label.innerHTML += '<br />' + 'i: ' + messageJSON.i[1];
                 if (messageJSON.i[0] == 1) {
+
                     // Анимация вращения спинера
                     var angle = parseFloat($("#spinner").getRotateAngle());
                     console.log('spinner: angle is ' + angle + '°C');
                     $("#spinner").rotate({
-                        //angle: angle,
+                        angle: angle,
                         animateTo: angle + 360 * 9,
                         duration: 8000,
+                        callback: function () {
+                            console.log('spinner: it is stop.');
+                        }
                     });
+
                 }
             } else {
                 label.innerHTML = 'i: data error!';
@@ -88,8 +93,8 @@ window.onload = function () {
             socket.close();
     }
 
-    // Отправка вращения спинера
-    $("#spinner").click(function () {
+    //Отправка вращения спинера
+    $("#spinnerButtonSVG").click(function () {
         // Проверка состояния сокета
         if (socket.readyState === WebSocket.OPEN) {
             // JSON на вращение спинера
@@ -101,4 +106,6 @@ window.onload = function () {
             socket.send(messageJSON);
         }
     });
+
 }
+
