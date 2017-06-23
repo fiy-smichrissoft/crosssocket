@@ -1,3 +1,8 @@
+/* Убрать мерцания на iPhone */
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
 html, body{
     overflow: hidden;
 }
@@ -10,16 +15,16 @@ html, body{
 }
 /* Блок со спинером */
 #spinnerDIV {
-    margin: 30px auto 0;
-    width: 300px;
-    height: 300px;
-    border: 1px solid #000000;
+    margin: 5% 2%;
+    width: 96%;
+    /*height: 300px;*/
+    border: 0px solid #000000;
 }
 /* Картинка со спинером */
 #spinner{
     width: 100%;
     height: 100%;
-    border: 1px solid #FF0000;
+    border: 0px solid #FF0000;
 }
 /* Область чата */
 #chat {

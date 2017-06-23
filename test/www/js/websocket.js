@@ -9,11 +9,6 @@
 // Загрузка страницы
 window.onload = function () {
 
-    // Отключение скрола
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, true);
-
     // Получение основных элементов страницы в переменные
     var label = document.getElementById("status");
     var message = document.getElementById("message");
@@ -95,14 +90,15 @@ window.onload = function () {
             );
             socket.send(messageJSON);
             console.log('send: ' + messageJSON);
+            message.value = '';
         }
     }
 
     // Закрытие сокета (выход)
-    btnStop.onclick = function () {
-        if (socket.readyState === WebSocket.OPEN)
-            socket.close();
-    }
+    // btnStop.onclick = function () {
+    //     if (socket.readyState === WebSocket.OPEN)
+    //         socket.close();
+    // }
 
     //Отправка вращения спинера
     $("#spinnerButtonSVG").click(function () {
@@ -117,6 +113,5 @@ window.onload = function () {
             socket.send(messageJSON);
         }
     });
-
 }
 
