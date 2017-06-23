@@ -1,15 +1,29 @@
-/* Убрать мерцания на iPhone */
-* {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-}
-
 html, body{
+    /* Убрать скроллы */
     overflow: hidden;
+    /* Адаптация под моильное приложение */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* Убрать мерцания на iPhone */
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+    resize: none;
+    outline: none;
+    /* Убрать выделения */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Убрать курсор */
+    /*cursor: none;*/
+    cursor: default;
 }
 
 /* Область со спинером */
 #main{
     width: 100%;
+    height: 70%;
     text-align: center;
     border: 1px solid #000000;
 }
@@ -17,29 +31,16 @@ html, body{
 #spinnerDIV {
     margin: 5% 2%;
     width: 96%;
-    /*height: 300px;*/
-    border: 0px solid #000000;
+    /*border: 1px solid #000000;*/
 }
 /* Картинка со спинером */
 #spinner{
-    width: 100%;
-    height: 100%;
-    border: 0px solid #FF0000;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*border: 1px solid #FF0000;*/
 }
 /* Область чата */
 #chat {
     background-color: #EEEEEE;
     padding: 5px;
-}
-/* Отключение выделения */
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    /*cursor: none;*/
-    cursor: default;
 }

@@ -25,7 +25,7 @@ window.onload = function () {
     socket.onopen = function () {
         label.innerHTML = 'i: Hello!';
         console.log('message: open socket - ' + socket.url);
-    }
+    };
     // Закрытие соединения
     socket.onclose = function (event) {
         if (event.wasClean) {
@@ -36,12 +36,12 @@ window.onload = function () {
                 'error: closing socket (' + socket.url + ') is NO correct! '
                 + event.reason + ' [' + event.code + ']'
             );
-    }
+    };
     // Возникновение ошибки
     socket.onerror = function () {
         label.innerHTML = 'i: connecting error!';
         console.log('error: socket is error!');
-    }
+    };
     // Полуение данных
     socket.onmessage = function (event) {
         // Проверка на строку
@@ -77,7 +77,7 @@ window.onload = function () {
             label.innerHTML = 'i: data error!';
             console.log('error: type of answer is wrong!');
         }
-    }
+    };
 
     // Отправка сообщения в чат
     btnSend.onclick = function () {
@@ -92,7 +92,7 @@ window.onload = function () {
             console.log('send: ' + messageJSON);
             message.value = '';
         }
-    }
+    };
 
     // Закрытие сокета (выход)
     // btnStop.onclick = function () {
@@ -113,5 +113,5 @@ window.onload = function () {
             socket.send(messageJSON);
         }
     });
-}
+};
 

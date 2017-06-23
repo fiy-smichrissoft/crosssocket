@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="msapplication-tap-highlight" content="no"/>
+
+    <!--Отключение масштабирования-->
     <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
+    <meta name="HandheldFriendly" content="True"/>
 
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <meta http-equiv="Content-Security-Policy" content="
@@ -58,36 +60,56 @@
 <!--</div>-->
 <!--</div>-->
 
-<div id="main" unselectable="on" class="noselect">
+<!--unselectable="on"-->
+<div id="main">
     <div id="spinnerDIV">
         <svg id="spinner" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
 
             <!--Спинер-->
             <!--<polygon-->
-                    <!--id="spinnerSVG"-->
-                    <!--fill="#FF0000" stroke="#AA0000" stroke-width="3"-->
-                    <!--points="150,3.7725830078125 184.55645751953125, 103.1871109008789 289.7838439941406, 105.33148193359375 205.9135284423828, 168.9174041748047 236.3911590576172, 269.6572265625 150,209.5409698486328 63.60884094238281, 269.6572265625 94.08647155761719, 168.9174041748047 10.216169357299805, 105.33148193359375 115.44353485107422, 103.1871109008789 150, 3.7725830078125 184.55645751953125, 103.1871109008789 "-->
+            <!--id="spinnerSVG"-->
+            <!--fill="#FF0000" stroke="#AA0000" stroke-width="3"-->
+            <!--points="150,3.7725830078125 184.55645751953125, 103.1871109008789 289.7838439941406, 105.33148193359375 205.9135284423828, 168.9174041748047 236.3911590576172, 269.6572265625 150,209.5409698486328 63.60884094238281, 269.6572265625 94.08647155761719, 168.9174041748047 10.216169357299805, 105.33148193359375 115.44353485107422, 103.1871109008789 150, 3.7725830078125 184.55645751953125, 103.1871109008789 "-->
             <!--/>-->
+
+            <!--<g id="spinnerSVG">-->
+                <!--<g transform="rotate(120 193.422 175)" id="svg_12">-->
+                    <!--<rect id="svg_13" fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+                          <!--stroke-linecap="null" x="178.42188" y="119" width="30" height="100" stroke="#000000"/>-->
+                    <!--<ellipse fill="#e5e5e5" stroke="#000000" cx="193.42188" cy="125" rx="45" ry="45" id="svg_15"/>-->
+                <!--</g>-->
+                <!--<g transform="rotate(-120 106.811 174.908)" id="svg_16">-->
+                    <!--<rect id="svg_17" fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+                          <!--stroke-linecap="null" x="91.81057" y="118.90822" width="30" height="100" stroke="#000000"/>-->
+                    <!--<ellipse fill="#e5e5e5" stroke="#000000" cx="106.81057" cy="124.90822" rx="45" ry="45" id="svg_19"/>-->
+                <!--</g>-->
+                <!--<g id="svg_7">-->
+                    <!--<rect fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+                          <!--stroke-linecap="null" x="135" y="44" width="30" height="100" id="svg_5" stroke="#000000"/>-->
+                    <!--<ellipse id="svg_2" ry="45" rx="45" cy="50" cx="150" stroke="#000000" fill="#e5e5e5"/>-->
+                <!--</g>-->
+                <!--<ellipse ry="45" rx="45" id="svg_1" cy="150" cx="150" stroke="#000000" fill="#e5e5e5"/>-->
+            <!--</g>-->
 
             <!--Наложение картинки-->
             <image
-                id="spinnerSVG"
-                xlink:href="img/spinner-test-2.png"
-                height="300"
-                width="300" y="1" x="-1"
+            id="spinnerSVG"
+            xlink:href="img/spinner-test-2.png"
+            height="300"
+            width="300" y="1" x="-1"
             />
             <!--<image -->
-                <!--id="spinnerSVG"-->
-                <!--xlink:href="img/rad.png"-->
-                <!--height="300" width="300" y="-3" x="-7"-->
+            <!--id="spinnerSVG"-->
+            <!--xlink:href="img/rad.png"-->
+            <!--height="300" width="300" y="-3" x="-7"-->
             <!--/>-->
 
             <!--Подложка (213)-->
-            <ellipse
-                    id="spinnerInvisible"
-                    fill="rgba(255, 255, 255, 0)" stroke="#000000" stroke-width="0"
-                    ry="150" rx="150" cy="150" cx="150"
-            />
+            <!--<ellipse-->
+            <!--id="spinnerInvisible"-->
+            <!--fill="rgba(255, 255, 255, 0)" stroke="none" stroke-width="0"-->
+            <!--ry="150" rx="150" cy="150" cx="150"-->
+            <!--/>-->
             <!--<rect id="spinnerInvisible"-->
             <!--stroke-width="1" stroke="#000000" fill="rgba(255, 255, 255, 0)"-->
             <!--height="300" width="300" y="-100" x="-100"-->

@@ -1,0 +1,21 @@
+<svg id="spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!--Спинер-->
+  <!--<g id="spinnerSVG">-->
+  <!--<g transform="rotate(120 193.422 175)" id="svg_12">-->
+  <!--<rect id="svg_13" fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+  <!--stroke-linecap="null" x="178.42188" y="119" width="30" height="100" stroke="#000000"/>-->
+  <!--<ellipse fill="#e5e5e5" stroke="#000000" cx="193.42188" cy="125" rx="45" ry="45" id="svg_15"/>-->
+  <!--</g>-->
+  <!--<g transform="rotate(-120 106.811 174.908)" id="svg_16">-->
+  <!--<rect id="svg_17" fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+  <!--stroke-linecap="null" x="91.81057" y="118.90822" width="30" height="100" stroke="#000000"/>-->
+  <!--<ellipse fill="#e5e5e5" stroke="#000000" cx="106.81057" cy="124.90822" rx="45" ry="45" id="svg_19"/>-->
+  <!--</g>-->
+  <!--<g id="svg_7">-->
+  <!--<rect fill="#e5e5e5" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null"-->
+  <!--stroke-linecap="null" x="135" y="44" width="30" height="100" id="svg_5" stroke="#000000"/>-->
+  <!--<ellipse id="svg_2" ry="45" rx="45" cy="50" cx="150" stroke="#000000" fill="#e5e5e5"/>-->
+  <!--</g>-->
+  <!--<ellipse ry="45" rx="45" id="svg_1" cy="150" cx="150" stroke="#000000" fill="#e5e5e5"/>-->
+  <!--</g>-->
+</svg>

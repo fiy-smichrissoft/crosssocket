@@ -1,6 +1,10 @@
 $(function () {
 
-    // Отключение скрола
+    // $(window).on('resize',function(){
+    //     $('#main').hide();
+    // });
+
+    //Отключение скрола
     $(window).load(function () {
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
@@ -32,12 +36,12 @@ $(function () {
     var angle2, angle1 = 0.0;
 
     // Вычисление угла поворота спинера
-    function angleUp(event) {
+    function angleUp() {
         // Обновление начальной и конечной точки вектора
         vector[2] = vector[0];
         vector[3] = vector[1];
         vector[0] = event.pageX - Xzero;
-        vector[1] = -(event.pageY - Yzero);
+        vector[1] = 0 - (event.pageY - Yzero);
         if (vector[2] !== vector[0] || vector[3] !== vector[1]) {
 
             // Промежуточные углы (по часовой от горизонта)
@@ -54,7 +58,7 @@ $(function () {
             if (vector[2] > 0 && vector[3] > 0 && vector[0] > 0 && vector[1] <= 0)
                 angleNew = (360 - angle1 + angle2);
             else if (vector[2] > 0 && vector[3] < 0 && vector[0] > 0 && vector[1] >= 0)
-                angleNew = (360 - angle2 + angle1);
+                angleNew = -(360 - angle2 + angle1);
             else
                 angleNew = (angle2 - angle1);
 
@@ -156,33 +160,6 @@ $(function () {
 
      */
 
-    /*
-     // Включение нажатого состояния на спинере
-     // (Desktop)
-     $("#spinnerInvisible").mousedown(function () {
-     spinDown = true;
-     console.log('spinner: spinDown is ' + spinDown + ' (mousedown)');
-     });
-     // (Mobile)
-     $("#spinnerInvisible").bind('touchstart', function () {
-     spinDown = true;
-     //console.log('spinner: spinDown is ' + spinDown + ' (touchstart)');
-     });
-
-     // Выключение нажатого состояния на спинере
-     // (Desktop)
-     $("*").mouseup(function () {
-     spinDown = false;
-     //console.log('spinner: spinDown is ' + spinDown + ' (mouseup)');
-     //console.log('spinner: angleSum is ' + angleSum);
-     });
-     // (Mobile)
-     $("*").bind('touchend', function () {
-     spinDown = false;
-     //console.log('spinner: spinDown is ' + spinDown) + ' (touchend)';
-     });
-     */
-
     // Временной маркер для периода действия
     var spinGo = true;
 
@@ -190,12 +167,8 @@ $(function () {
     var spinTime = 0;
 
     // Анализ производимых действий
-    $("#spinnerInvisible").bind('touchmove', function (event) {
-    //$("#spinnerInvisible").mousemove(function (event) {
-
-        //vector[0] = event.pageX - Xzero;
-        //vector[1] = -(event.pageY - Yzero);
-        //console.log('spinner: 111 vector is ' + vector);
+    $("#spinnerSVG").bind('touchmove', function (event) {
+    //$("#spinnerSVG").mousemove(function (event) {
 
         //if (spinDown) {
         angleUp(event);
@@ -219,14 +192,13 @@ $(function () {
             //setTimeout(function () {
                 console.log('spinner: it is go.');
 
-                //$("#img").stopRotate();
                 $("#spinner").rotate({
                     duration: 1000,
                     angle: angleCur,
-                    animateTo: angleCur + angleNew,
-                    //callback: function () {
-                    //    console.log('spinner: it is stop.');
-                    //}
+                    animateTo: angleCur + angleNew
+                    // callback: function () {
+                    //     console.log('spinner: it is stop.');
+                    // }
                 });
 
                 angleSum = 0;
@@ -239,7 +211,6 @@ $(function () {
         //}
     });
 
-
     // Вектор с точками начала и конца движения
     var vector2 = [0.0, 0.0, 0.0, 0.0];
     // Счетчик времени движения
@@ -249,7 +220,14 @@ $(function () {
     // Скорость движения
     var spinSpeed = 0.0;
 
-    $("#spinnerInvisible").bind('touchstart', function (event) {
+    //$("#spinnerInvisible").mousedown(function (event) {
+    $("#spinnerSVG").bind('touchstart', function (event) {
+        // Актуализация
+        $("#spinner").stopRotate();
+        angleCur = parseFloat($("#spinner").getRotateAngle());
+        // ПОЧЕМУ НА АНДРОИДЕ  event.pageX и event.pageY - NaN - ?!!!!!!!!!!!!!!!!!
+        vector = [event.pageX - Xzero, -(event.pageY - Yzero), event.pageX - Xzero, -(event.pageY - Yzero)];
+
         // Точка начала движения
         vector2[0] = event.pageX - Xzero;
         vector2[1] = -(event.pageY - Yzero);
@@ -257,9 +235,10 @@ $(function () {
         spinTimer = performance.now();
     });
 
-    $("#spinnerInvisible").bind('touchend', function (event) {
+    //$("#spinnerInvisible").mouseup(function (event) {
+    $("#spinnerSVG").bind('touchend', function (event) {
         //
-        vector = [event.pageX - Xzero, -(event.pageY - Yzero), event.pageX - Xzero, -(event.pageY - Yzero)];
+        //vector = [event.pageX - Xzero, -(event.pageY - Yzero), event.pageX - Xzero, -(event.pageY - Yzero)];
 
         // Точка конца движения
         vector2[2] = event.pageX - Xzero;
@@ -270,8 +249,6 @@ $(function () {
         spinSpeed = spinRoad / spinTimer;
         //alert(vector2 + ' ' + spinTimer + ' ' + spinRoad + ' ' + spinSpeed);
 
-
-
         // Промежуточные углы (по часовой от горизонта)
         if (vector2[3] <= 0)
             a1 = -1 * Math.atan2(vector2[3], vector2[2]) / Math.PI * 180;
@@ -281,22 +258,21 @@ $(function () {
             a2 = -1 * Math.atan2(vector2[1], vector2[0]) / Math.PI * 180;
         else
             a2 = 360 - Math.atan2(vector2[1], vector2[0]) / Math.PI * 180;
+        console.log('new: ' + a1 + ' old: ' + a2);
 
         // Корректировка при проходе через 0 (точку отсчета)
         if (vector2[2] > 0 && vector2[3] > 0 && vector2[0] > 0 && vector2[1] <= 0)
-            aNew = (360 - a1 + a2);
+        {aNew = (360 - a1 + a2); console.log('1: ' + aNew);}
         else if (vector2[2] > 0 && vector2[3] < 0 && vector2[0] > 0 && vector2[1] >= 0)
-            aNew = (360 - a2 + a1);
+        {aNew = -(360 - a2 + a1); console.log('2: ' + aNew);}
         else
-            aNew = (a2 - a1);
+        {aNew = (a2 - a1); console.log('3: ' + aNew);}
 
         // Смена направления вращения
         if (aNew > 0)
             spinSpeed = -1 * spinSpeed;
 
-
-
-
+        // Вращение с ускорением
         $("#spinner").rotate({
             duration: 8000,
             angle: angleCur,
@@ -309,4 +285,4 @@ $(function () {
 
     });
 
-})
+});

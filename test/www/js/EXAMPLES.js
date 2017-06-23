@@ -5,9 +5,7 @@ window.onload = function () { // $(window).load(function () {
     document.addEventListener('touchmove', function (e) {
         e.preventDefault();
     }, true);
-}
-)
-;
+};
 
 //
 // 2. Подключение SVG через тег <object> c jQuery и без
