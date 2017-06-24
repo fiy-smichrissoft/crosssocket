@@ -101,7 +101,7 @@ window.onload = function () {
     // }
 
     //Отправка вращения спинера
-    $("#spinnerButtonSVG").click(function () {
+    $('#spinnerButtonSVG').on('click',function(){
         // Проверка состояния сокета
         if (socket.readyState === WebSocket.OPEN) {
             // JSON на вращение спинера

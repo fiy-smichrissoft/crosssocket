@@ -35,7 +35,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/framework7.ios.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/framework7.ios.min.css"/>-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +46,8 @@
 
     <title>Сокет клиент</title>
 
-    <script type="text/javascript" src="js/lib/jquery.1.6.1.min.js"></script>
+    <!--<script type="text/javascript" src="js/lib/jquery.min.2.1.4.js"></script>-->
+    <script type="text/javascript" src="js/lib/jquery.min.2.2.4.js"></script>
     <script type="text/javascript" src="js/lib/jqueryrotate.2.3.js"></script>
 
 </head>
@@ -91,47 +92,63 @@
                 <!--<ellipse ry="45" rx="45" id="svg_1" cy="150" cx="150" stroke="#000000" fill="#e5e5e5"/>-->
             <!--</g>-->
 
+            <g id="spinnerSVG">
+                <rect id="svg_5" height="240" width="10" y="30" x="145" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_4" height="10" width="240" y="145" x="30" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <ellipse fill="#e5e5e5" stroke="#000000" cx="150" cy="150" id="svg_1" rx="60" ry="60"/>
+                <ellipse fill="#ffffff" stroke="#000000" cx="150" cy="150" rx="50" ry="50" id="svg_2"/>
+                <rect id="svg_18" height="10" width="50" y="70" x="125" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect stroke="#000000" id="svg_24" height="10" width="40" y="50" x="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#e5e5e5"/>
+                <rect id="svg_26" height="10" width="40" y="240" x="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_19" height="10" width="50" y="220" x="125" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_27" height="10" width="30" y="260" x="135" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_25" height="10" width="30" y="30" x="135" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_15" height="50" width="10" y="125" x="70" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_16" height="50" width="10" y="125" x="220" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_21" height="40" width="10" y="130" x="240" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_22" height="30" width="10" y="136" x="260" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <ellipse fill="#e5e5e5" stroke="#000000" cx="150" cy="150" rx="30" ry="30" id="svg_3"/>
+                <rect id="svg_20" height="40" width="10" y="130" x="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+                <rect id="svg_23" height="30" width="10" y="135" x="30" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#e5e5e5"/>
+            </g>
+
             <!--Наложение картинки-->
-            <image
-            id="spinnerSVG"
-            xlink:href="img/spinner-test-2.png"
-            height="300"
-            width="300" y="1" x="-1"
-            />
-            <!--<image -->
+            <!--<image-->
             <!--id="spinnerSVG"-->
-            <!--xlink:href="img/rad.png"-->
-            <!--height="300" width="300" y="-3" x="-7"-->
+            <!--xlink:href="img/spinner-test-2.png"-->
+            <!--height="300"-->
+            <!--width="300" y="1" x="-1"-->
+            <!--/>-->
+            <!--<image-->
+                <!--id="spinnerSVG"-->
+                <!--xlink:href="img/rad.png"-->
+                <!--height="300" width="300" y="-3" x="-7"-->
             <!--/>-->
 
             <!--Подложка (213)-->
-            <!--<ellipse-->
-            <!--id="spinnerInvisible"-->
-            <!--fill="rgba(255, 255, 255, 0)" stroke="none" stroke-width="0"-->
-            <!--ry="150" rx="150" cy="150" cx="150"-->
-            <!--/>-->
-            <!--<rect id="spinnerInvisible"-->
-            <!--stroke-width="1" stroke="#000000" fill="rgba(255, 255, 255, 0)"-->
-            <!--height="300" width="300" y="-100" x="-100"-->
-            <!--/>-->
+            <ellipse
+                id="spinnerInvisible"
+                fill="rgba(255, 255, 255, 0)" stroke="none" stroke-width="0"
+                ry="213" rx="213" cy="150" cx="150"
+            />
 
             <!--Кнопка атаки-->
             <ellipse
-                    id="spinnerButtonSVG"
-                    fill="#FF0000" stroke="#AA0000" stroke-width="3"
-                    ry="21" rx="21" cy="150" cx="150"
+                id="spinnerButtonSVG"
+                fill="#ffffff" stroke="#000000" stroke-width="1"
+                ry="20" rx="20" cy="150" cx="150"
             />
         </svg>
     </div>
 </div>
 
-<div id="chat">
-    <input type="text" id="message" size="10"/>
-    <input type="button" id="send" value="send"/>
+<!--<div id="chat">-->
+    <!--<input type="text" id="message" size="10"/>-->
+    <!--<input type="button" id="send" value="send"/>-->
     <!--<input type="button" id="stop" value="stop"/>-->
-    <br/>
-    <label id="status">_</label>
-</div>
+    <!--<br/>-->
+    <!--<label id="status">_</label>-->
+<!--</div>-->
 
 <!--<script type="text/javascript" src="cordova.js"></script>-->
 <!--<script type="text/javascript" src="js/index.js"></script>-->
@@ -139,7 +156,7 @@
 <!--app.initialize();-->
 <!--</script>-->
 
-<script type="text/javascript" src="js/websocket.js"></script>
+<!--<script type="text/javascript" src="js/websocket.js"></script>-->
 <script type="text/javascript" src="js/spinner.js"></script>
 
 </body>

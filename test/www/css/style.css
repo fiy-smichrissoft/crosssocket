@@ -25,13 +25,13 @@ html, body{
     width: 100%;
     height: 70%;
     text-align: center;
-    border: 1px solid #000000;
+    border: 0px solid #000000;
 }
 /* Блок со спинером */
 #spinnerDIV {
-    margin: 5% 2%;
-    width: 96%;
-    /*border: 1px solid #000000;*/
+    margin: 20% 0%;
+    width: 100%;
+    border: 1px solid #000000;
 }
 /* Картинка со спинером */
 #spinner{

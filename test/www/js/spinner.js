@@ -1,21 +1,28 @@
 $(function () {
 
-    // $(window).on('resize',function(){
-    //     $('#main').hide();
+    // Блокировать поворот экрана
+    // var switcher = false;
+    // console.log(switcher);
+    // $(window).on('resize', function () {
+    //     switcher = !switcher;
+    //     if (switcher)
+    //         $('body').hide();
+    //     else
+    //         $('body').show();
+    //
+    //     console.log(switcher);
     // });
 
     //Отключение скрола
-    $(window).load(function () {
-        document.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-        }, true);
+    $(document).on('touchstart', function (e) {
+        e.preventDefault();
     });
 
     // Блок со спинером
     var spinnerDIV = document.getElementById("spinnerDIV");
 
     // Маркер нажатого состояния на спинере
-    var spinDown = false;
+    // var spinDown = false;
 
     // Размеры области
     var Xmax = spinnerDIV.clientWidth;
@@ -36,12 +43,12 @@ $(function () {
     var angle2, angle1 = 0.0;
 
     // Вычисление угла поворота спинера
-    function angleUp() {
+    function angleUp(pageX, pageY) {
         // Обновление начальной и конечной точки вектора
         vector[2] = vector[0];
         vector[3] = vector[1];
-        vector[0] = event.pageX - Xzero;
-        vector[1] = 0 - (event.pageY - Yzero);
+        vector[0] = pageX - Xzero;
+        vector[1] = 0 - (pageY - Yzero);
         if (vector[2] !== vector[0] || vector[3] !== vector[1]) {
 
             // Промежуточные углы (по часовой от горизонта)
@@ -62,16 +69,15 @@ $(function () {
             else
                 angleNew = (angle2 - angle1);
 
-            // Обновление значений у всех углов
-            //angleNew = (angle2 - angle1);
+            // Обновление значений углов
             angleSum = angleSum + angleNew;
             angleCur = angleCur + angleNew;
-            console.log('spinner: vector is ' + vector);
-            console.log('spinner: angle2 is ' + angle2);
-            console.log('spinner: angle1 is ' + angle1);
-            console.log('spinner: angleNew is ' + angleNew);
-            //console.log('spinner: angleSum is ' + angleSum);
-            //console.log('spinner: angleCur is ' + angleCur);
+            // console.log('spinner: vector is ' + vector);
+            // console.log('spinner: angle2 is ' + angle2);
+            // console.log('spinner: angle1 is ' + angle1);
+            // console.log('spinner: angleNew is ' + angleNew);
+            // console.log('spinner: angleSum is ' + angleSum);
+            // console.log('spinner: angleCur is ' + angleCur);
         }
     }
 
@@ -160,56 +166,56 @@ $(function () {
 
      */
 
-    // Временной маркер для периода действия
-    var spinGo = true;
-
-    // Период вращения
-    var spinTime = 0;
-
-    // Анализ производимых действий
-    $("#spinnerSVG").bind('touchmove', function (event) {
-    //$("#spinnerSVG").mousemove(function (event) {
-
-        //if (spinDown) {
-        angleUp(event);
-
-        if (spinGo) {
-            spinGo = false;
-
-            // Изменение периода взависимости от угла вращения
-            /*
-             if (angleSum <= 3)
-             spinTime = 10;
-             else if ((angleSum > 3) && (angleSum < 45))
-             spinTime = 1000;
-             else
-             spinTime = 3000;
-             */
-
-            spinTime = 300;
-
-            // Вращение на суммарный угол за ограниченный период действия
-            //setTimeout(function () {
-                console.log('spinner: it is go.');
-
-                $("#spinner").rotate({
-                    duration: 1000,
-                    angle: angleCur,
-                    animateTo: angleCur + angleNew
-                    // callback: function () {
-                    //     console.log('spinner: it is stop.');
-                    // }
-                });
-
-                angleSum = 0;
-                spinGo = true;
-
-                //$("#img").stopRotate();
-            //}, spinTime);
-
-        }
-        //}
-    });
+    // // Временной маркер для периода действия
+    // var spinGo = true;
+    //
+    // // Период вращения
+    // var spinTime = 0;
+    //
+    // // Анализ производимых действий
+    // $("#spinnerSVG").on('touchmove', function () {
+    // //$("#spinnerSVG").on('mousemove', function () {
+    //
+    //     //if (spinDown) {
+    //     angleUp(event.pageX, event.pageY);
+    //
+    //     if (spinGo) {
+    //         spinGo = false;
+    //
+    //         // Изменение периода взависимости от угла вращения
+    //         /*
+    //          if (angleSum <= 3)
+    //          spinTime = 10;
+    //          else if ((angleSum > 3) && (angleSum < 45))
+    //          spinTime = 1000;
+    //          else
+    //          spinTime = 3000;
+    //          */
+    //
+    //         spinTime = 300;
+    //
+    //         // Вращение на суммарный угол за ограниченный период действия
+    //         //setTimeout(function () {
+    //             console.log('spinner: it is go.');
+    //
+    //             $("#spinner").rotate({
+    //                 duration: 1000,
+    //                 angle: angleCur,
+    //                 animateTo: angleCur + angleNew
+    //                 // callback: function () {
+    //                 //     console.log('spinner: it is stop.');
+    //                 // }
+    //             });
+    //
+    //             angleSum = 0;
+    //             spinGo = true;
+    //
+    //             //$("#img").stopRotate();
+    //         //}, spinTime);
+    //
+    //     }
+    //     //}
+    // });
 
     // Вектор с точками начала и конца движения
     var vector2 = [0.0, 0.0, 0.0, 0.0];
@@ -219,35 +225,51 @@ $(function () {
     var spinRoad = 0.0;
     // Скорость движения
     var spinSpeed = 0.0;
+    // Положение курсора
+    var pageX = 0.0;
+    var pageY = 0.0;
 
-    //$("#spinnerInvisible").mousedown(function (event) {
-    $("#spinnerSVG").bind('touchstart', function (event) {
-        // Актуализация
-        $("#spinner").stopRotate();
-        angleCur = parseFloat($("#spinner").getRotateAngle());
-        // ПОЧЕМУ НА АНДРОИДЕ  event.pageX и event.pageY - NaN - ?!!!!!!!!!!!!!!!!!
-        vector = [event.pageX - Xzero, -(event.pageY - Yzero), event.pageX - Xzero, -(event.pageY - Yzero)];
-
+    // Старт движения
+    $("#spinnerInvisible").on('touchstart mousedown', function (event) {
+        // console.log(event);
+        // Положение курсора
+        if (event.type == 'touchstart') {
+            pageX = event.originalEvent.touches[0].pageX;
+            pageY = event.originalEvent.touches[0].pageY;
+        } else if (event.type == 'mousedown') {
+            pageX = event.pageX;
+            pageY = event.pageY;
+        }
+        // Актуализация для физики с управляемым поворотом спинера при ведению по нему
+        // $("#spinner").stopRotate();
+        // angleCur = parseFloat($("#spinner").getRotateAngle());
+        vector = [pageX - Xzero, -(pageY - Yzero), pageX - Xzero, -(pageY - Yzero)];
+        // console.log('spinner: vector is ' + vector);
         // Точка начала движения
-        vector2[0] = event.pageX - Xzero;
-        vector2[1] = -(event.pageY - Yzero);
+        vector2[0] = pageX - Xzero;
+        vector2[1] = -(pageY - Yzero);
+        // console.log('spinner: vector2 is ' + vector2);
         // Старт счетчика времени движения
-        spinTimer = performance.now();
+        spinTimer = Date.now();
+        // console.log('spinTimer: ' + spinTimer);
+        console.log('event: touchstart mousedown');
+
     });
 
-    //$("#spinnerInvisible").mouseup(function (event) {
-    $("#spinnerSVG").bind('touchend', function (event) {
-        //
-        //vector = [event.pageX - Xzero, -(event.pageY - Yzero), event.pageX - Xzero, -(event.pageY - Yzero)];
-
+    // Конец движения
+    $("#spinnerInvisible").on('touchend mouseup', function (event) { //
+        // console.log(event);
+        // Положение курсора
+        if (event.type == 'touchend') {
+            pageX = event.originalEvent.changedTouches[0].pageX;
+            pageY = event.originalEvent.changedTouches[0].pageY;
+        } else if (event.type == 'mouseup') {
+            pageX = event.pageX;
+            pageY = event.pageY;
+        }
         // Точка конца движения
-        vector2[2] = event.pageX - Xzero;
-        vector2[3] = -(event.pageY - Yzero);
-        // Расчет времени, длины и скорости движения
-        spinTimer = performance.now() - spinTimer;
-        spinRoad = Math.sqrt(Math.pow((vector2[2] - vector2[0]), 2) + Math.pow((vector2[3] - vector2[1]), 2));
-        spinSpeed = spinRoad / spinTimer;
-        //alert(vector2 + ' ' + spinTimer + ' ' + spinRoad + ' ' + spinSpeed);
+        vector2[2] = pageX - Xzero;
+        vector2[3] = -(pageY - Yzero);
 
         // Промежуточные углы (по часовой от горизонта)
         if (vector2[3] <= 0)
@@ -261,28 +283,41 @@ $(function () {
         console.log('new: ' + a1 + ' old: ' + a2);
 
         // Корректировка при проходе через 0 (точку отсчета)
-        if (vector2[2] > 0 && vector2[3] > 0 && vector2[0] > 0 && vector2[1] <= 0)
-        {aNew = (360 - a1 + a2); console.log('1: ' + aNew);}
-        else if (vector2[2] > 0 && vector2[3] < 0 && vector2[0] > 0 && vector2[1] >= 0)
-        {aNew = -(360 - a2 + a1); console.log('2: ' + aNew);}
-        else
-        {aNew = (a2 - a1); console.log('3: ' + aNew);}
+        if (vector2[2] > 0 && vector2[3] > 0 && vector2[0] > 0 && vector2[1] <= 0) {
+            aNew = (360 - a1 + a2);
+            // console.log('1: ' + aNew);
+        }
+        else if (vector2[2] > 0 && vector2[3] < 0 && vector2[0] > 0 && vector2[1] >= 0) {
+            aNew = -(360 - a2 + a1);
+            // console.log('2: ' + aNew);
+        }
+        else {
+            aNew = (a2 - a1);
+            // console.log('3: ' + aNew);
+        }
 
-        // Смена направления вращения
-        if (aNew > 0)
-            spinSpeed = -1 * spinSpeed;
 
+        // Расчет времени, длины и скорости движения
+        spinTimer = Date.now() - spinTimer;
+
+        spinRoad = -1 * aNew;
+
+        spinSpeed2 = spinSpeed;
+        spinSpeed = spinRoad / spinTimer  * 10000;
+
+        //console.log(vector2 + ' ' + spinTimer + ' ' + spinRoad + ' ' + spinSpeed);
+
+        angleCur = parseFloat($("#spinner").getRotateAngle());
         // Вращение с ускорением
         $("#spinner").rotate({
-            duration: 8000,
+            duration: 15000,
             angle: angleCur,
-            animateTo: angleCur + spinSpeed * 1500,
+            animateTo: angleCur + spinSpeed2 + spinSpeed
             //callback: function () {
             //    console.log('spinner: it is stop.');
             //}
         });
-        angleCur = angleCur + spinSpeed * 1500;
-
+        console.log('event: touchend mouseup ' + (angleCur + spinSpeed2 + spinSpeed));
     });
 
 });
